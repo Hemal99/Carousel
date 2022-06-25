@@ -1,23 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const Carousel = ({ slides, infinite }) => {
-  const [images, setImages] = useState([
-    {
-      image: "https://picsum.photos/600/400",
-      title: "Strong mask",
-      subTitle: "Secondary text",
-    },
-    {
-      image: "https://picsum.photos/id/237/600/400",
-      title: "Strong mask",
-      subTitle: "Secondary text",
-    },
-    {
-      image: "https://picsum.photos/600/400",
-      title: "Strong mask",
-      subTitle: "Secondary text",
-    },
-  ]);
+  const [images, setImages] = useState([]);
 
   const [currentImageIdx, setCurrentImagIdx] = useState(0);
 
@@ -67,7 +51,7 @@ const Carousel = ({ slides, infinite }) => {
   return (
     <div style={{ marginTop: "1rem" }}>
       <button onClick={prevSlide}>
-        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        Prev <i class="fa fa-arrow-left" aria-hidden="true"></i>
       </button>
       {/* render images */}
       {imageSourcesToDisplay?.map(
