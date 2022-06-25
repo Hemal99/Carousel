@@ -53,17 +53,14 @@ const HookedCarousel = () => {
   // create a new array with 5 elements from the source images
   const activeImageSourcesFromState = images.slice(
     currentImageIdx,
-    currentImageIdx + 3
+    currentImageIdx +1
   );
 
   // check the length of the new array (it’s less than 5 when index is at the end of the imagge sources array)
   const imageSourcesToDisplay =
     activeImageSourcesFromState.length < 3
       ? // if the imageSourcesToDisplay's length is lower than 5 images than append missing images from the beginning of the original array
-        [
-          ...activeImageSourcesFromState,
-          ...images.slice(0, 3 - activeImageSourcesFromState.length),
-        ]
+       activeImageSourcesFromState
       : activeImageSourcesFromState;
 
   return (
