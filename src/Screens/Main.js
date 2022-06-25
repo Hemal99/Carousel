@@ -1,17 +1,21 @@
 import React, { useRef, useState } from "react";
 import Carousel from "../Components/Carousel";
-import { useNavigate } from "react-router-dom";
 
 import { Button } from "@mui/material";
+import AddModel from "../Components/AddSlides/AddModel";
 
 export default function Main() {
+
   const inputRef = useRef();
   const infinite = useRef();
-  let navigate = useNavigate();
   const [err, setErr] = useState("");
-
+  const [open, setOpen] = useState(false);
   const [slides, setSlides] = useState(2);
   const [isFinite, setIsFinite] = useState(true);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
   const handleInfinite = (e) => {
     if (e.target.value === "yes") {
@@ -34,7 +38,7 @@ export default function Main() {
   return (
     <div style={{ marginTop: "1rem" }}>
       <div>
-        <Button onClick={() => navigate("/add-slides")}>Add Slides</Button>
+        <Button onClick={handleClickOpen}>Add Slides</Button>
       </div>
       <h5>No of slides : {slides}</h5>
       <form>
@@ -79,6 +83,7 @@ export default function Main() {
         </div>
       </form>
       <Carousel slides={slides} infinite={isFinite} />
+      <AddModel open={open} setOpen={setOpen} />
     </div>
   );
 }
