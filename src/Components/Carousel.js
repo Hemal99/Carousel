@@ -54,7 +54,7 @@ const Carousel = ({ slides, infinite }) => {
   return (
     <div style={{ marginTop: "1rem" }}>
       <button onClick={prevSlide}>
-        Prev <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      { "<<"} 
       </button>
       {/* render images */}
       {imageSourcesToDisplay?.map(
@@ -67,7 +67,7 @@ const Carousel = ({ slides, infinite }) => {
 
         // <img key={index} src={image} alt="" style={{ maxWidth: '15%', display: 'inlie-block' }} />
       )}
-      <button onClick={nextSlide}>Next</button>
+      <button onClick={nextSlide}>{">>"}</button>
     </div>
   );
 };
