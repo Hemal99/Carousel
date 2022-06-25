@@ -1,7 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Main from "./Screens/Main";
-import Slides from "./Components/AddSlides/Slides";
 
 function App() {
   return (
