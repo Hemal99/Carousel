@@ -6,6 +6,16 @@ export default function Main() {
   const infinite = useRef();
 
   const [slides, setSlides] = useState(2);
+  const [isFinite, setIsFinite] = useState(false);
+
+  const handleInfinite = (e) => {
+    console.log(e.target.value);
+    if(e.target.value==="yes"){
+        setIsFinite(true);
+    }else{
+        setIsFinite(false);
+    }
+  }
 
   const handleSubmit = (e) => {
     console.log("e", e);
@@ -36,6 +46,7 @@ export default function Main() {
               type="radio"
               id="yes"
               name="isFinite"
+              onChange={handleInfinite}
               value="yes"
             ></input>
           </div>
@@ -45,6 +56,7 @@ export default function Main() {
               ref={infinite}
               type="radio"
               id="no"
+              onChange={handleInfinite}
               name="isFinite"
               value="no"
             ></input>
@@ -54,7 +66,7 @@ export default function Main() {
           <button onClick={handleSubmit}>Submit</button>
         </div>
       </form>
-      <Carousel slides={slides} />
+      <Carousel slides={slides} isFinite={isFinite}/>
     </div>
   );
 }
