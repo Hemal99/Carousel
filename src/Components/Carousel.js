@@ -80,7 +80,7 @@ const Carousel = ({ slides, infinite }) => {
 
   return (
     <div style={{ marginTop: "1rem" }}>
-      <button onClick={prevSlide} disabled={preButton || !infinite}>
+      <button onClick={prevSlide} disabled={preButton}>
         {"<<"}
       </button>
       {/* render images */}
@@ -93,7 +93,7 @@ const Carousel = ({ slides, infinite }) => {
           </span>
         );
       })}
-      <button onClick={nextSlide} disabled={nextButton || !infinite}>
+      <button onClick={nextSlide} disabled={nextButton}>
         {">>"}
       </button>
     </div>
