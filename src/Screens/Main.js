@@ -3,17 +3,23 @@ import Carousel from "../Components/Carousel";
 
 import { Button } from "@mui/material";
 import AddModel from "../Components/AddSlides/AddModel";
+import ViewImages from "../Components/AddSlides/ViewSlides";
 
 export default function Main() {
   const inputRef = useRef();
   const infinite = useRef();
   const [err, setErr] = useState("");
   const [open, setOpen] = useState(false);
+  const [openView, setOpenView] = useState(false);
   const [slides, setSlides] = useState(2);
   const [isFinite, setIsFinite] = useState(true);
 
   const handleClickOpen = () => {
     setOpen(true);
+  };
+
+  const handleClickOpenView = () => {
+    setOpenView(true);
   };
 
   const handleInfinite = (e) => {
@@ -38,6 +44,9 @@ export default function Main() {
     <div style={{ marginTop: "1rem" }}>
       <div>
         <Button onClick={handleClickOpen}>Add Slides</Button>
+      </div>
+      <div>
+        <Button onClick={handleClickOpenView}>View Slides</Button>
       </div>
       <h5>No of slides : {slides}</h5>
       <form>
@@ -83,6 +92,7 @@ export default function Main() {
       </form>
       <Carousel slides={slides} infinite={isFinite} />
       <AddModel open={open} setOpen={setOpen} />
+      <ViewImages open={openView} setOpen={setOpenView} />
     </div>
   );
 }
