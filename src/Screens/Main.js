@@ -8,6 +8,7 @@ export default function Main() {
   const [slides, setSlides] = useState(2);
 
   const handleSubmit = (e) => {
+    console.log("e", e);
     e.preventDefault();
     console.log(inputRef.current.value);
     console.log(infinite.current.value);
@@ -28,10 +29,26 @@ export default function Main() {
 
         <div>
           <p>Is Finite</p>
-          <label style={{ marginRight: "1rem" }}>yes</label> {" "}
-          <input type="radio" id="yes" name="yes" value="yes"></input>
-          <label style={{ marginRight: "1rem" }}>no</label> {" "}
-          <input type="radio" id="no" name="no" value="no"></input>
+          <div>
+            <label style={{ marginRight: "1rem" }}>yes</label> {" "}
+            <input
+              ref={infinite}
+              type="radio"
+              id="yes"
+              name="isFinite"
+              value="yes"
+            ></input>
+          </div>
+          <div>
+            <label style={{ marginRight: "1rem" }}>no</label> {" "}
+            <input
+              ref={infinite}
+              type="radio"
+              id="no"
+              name="isFinite"
+              value="no"
+            ></input>
+          </div>
         </div>
         <div>
           <button onClick={handleSubmit}>Submit</button>
