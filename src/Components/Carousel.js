@@ -5,6 +5,8 @@ const Carousel = ({ slides, infinite }) => {
   const [images, setImages] = useState([]);
 
   const [currentImageIdx, setCurrentImagIdx] = useState(0);
+  const [nextButton,setNextButton] = useState(false);
+  const [preButton,setPrevButton]= useState(false);
 
   const getSlides = () => {
     const data = fetch(`http://localhost:3600/api/carousel/?slides=${slides}`)
@@ -15,6 +17,8 @@ const Carousel = ({ slides, infinite }) => {
 
   useEffect(() => {
     getSlides();
+    setNextButton(false);
+    setPrevButton(false);
   }, [slides, infinite]);
 
   const prevSlide = () => {
@@ -25,6 +29,17 @@ const Carousel = ({ slides, infinite }) => {
 
     // assign the logical index to current image index that will be used in render method
     setCurrentImagIdx(index);
+    if(index === 0){
+        setPrevButton(true);
+    }else{
+        setPrevButton(false);
+    }
+
+    if(index === images.length-1){
+        setNextButton(true);
+      }else{
+          setNextButton(false);
+      }
   };
 
   const nextSlide = () => {
@@ -35,6 +50,18 @@ const Carousel = ({ slides, infinite }) => {
 
     // assign the logical index to current image index that will be used in render method
     setCurrentImagIdx(index);
+
+    if(index === 0){
+        setPrevButton(true);
+    }else{
+        setPrevButton(false);
+    }
+
+    if(index === images.length-1){
+      setNextButton(true);
+    }else{
+        setNextButton(false);
+    }
   };
 
   // create a new array with 5 elements from the source images
@@ -52,7 +79,7 @@ const Carousel = ({ slides, infinite }) => {
 
   return (
     <div style={{ marginTop: "1rem" }}>
-      <button onClick={prevSlide}>
+      <button onClick={prevSlide} disabled={preButton}>
       { "<<"} 
       </button>
       {/* render images */}
@@ -66,7 +93,7 @@ const Carousel = ({ slides, infinite }) => {
 
         // <img key={index} src={image} alt="" style={{ maxWidth: '15%', display: 'inlie-block' }} />
       )}
-      <button onClick={nextSlide}>{">>"}</button>
+      <button onClick={nextSlide} disabled={nextButton}>{">>"}</button>
     </div>
   );
 };
