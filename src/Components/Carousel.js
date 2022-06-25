@@ -59,6 +59,7 @@ const Carousel = ({ slides, infinite }) => {
         (image, index) => {
           return (<span>
              <div className={styles.centered}>{image.title}</div>
+             <div className={styles.centered2}>{image.subTitle}</div>
             <img src={image?.image} alt="image" /></span>);
         }
 
