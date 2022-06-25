@@ -6,7 +6,7 @@ export default function Main() {
   const infinite = useRef();
 
   const [slides, setSlides] = useState(2);
-  const [isFinite, setIsFinite] = useState(false);
+  const [isFinite, setIsFinite] = useState(true);
 
   const handleInfinite = (e) => {
     if (e.target.value === "yes") {
@@ -18,7 +18,7 @@ export default function Main() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+
     setSlides(inputRef.current.value);
   };
 
@@ -64,7 +64,7 @@ export default function Main() {
           <button onClick={handleSubmit}>Submit</button>
         </div>
       </form>
-      <Carousel slides={slides} isFinite={isFinite} />
+      <Carousel slides={slides} infinite={isFinite} />
     </div>
   );
 }

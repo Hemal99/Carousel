@@ -5,15 +5,14 @@ const Carousel = ({ slides, infinite }) => {
   const [images, setImages] = useState([]);
 
   const [currentImageIdx, setCurrentImagIdx] = useState(0);
-  const [nextButton,setNextButton] = useState(false);
-  const [preButton,setPrevButton]= useState(false);
+  const [nextButton, setNextButton] = useState(false);
+  const [preButton, setPrevButton] = useState(false);
 
   const getSlides = () => {
     const data = fetch(`http://localhost:3600/api/carousel/?slides=${slides}`)
       .then((response) => response.json())
       .then((data) => setImages(data));
   };
-  
 
   useEffect(() => {
     getSlides();
@@ -29,17 +28,17 @@ const Carousel = ({ slides, infinite }) => {
 
     // assign the logical index to current image index that will be used in render method
     setCurrentImagIdx(index);
-    if(index === 0){
-        setPrevButton(true);
-    }else{
-        setPrevButton(false);
+    if (index === 0) {
+      setPrevButton(true);
+    } else {
+      setPrevButton(false);
     }
 
-    if(index === images.length-1){
-        setNextButton(true);
-      }else{
-          setNextButton(false);
-      }
+    if (index === images.length - 1) {
+      setNextButton(true);
+    } else {
+      setNextButton(false);
+    }
   };
 
   const nextSlide = () => {
@@ -51,16 +50,16 @@ const Carousel = ({ slides, infinite }) => {
     // assign the logical index to current image index that will be used in render method
     setCurrentImagIdx(index);
 
-    if(index === 0){
-        setPrevButton(true);
-    }else{
-        setPrevButton(false);
+    if (index === 0) {
+      setPrevButton(true);
+    } else {
+      setPrevButton(false);
     }
 
-    if(index === images.length-1){
+    if (index === images.length - 1) {
       setNextButton(true);
-    }else{
-        setNextButton(false);
+    } else {
+      setNextButton(false);
     }
   };
 
@@ -79,21 +78,26 @@ const Carousel = ({ slides, infinite }) => {
 
   return (
     <div style={{ marginTop: "1rem" }}>
-      <button onClick={prevSlide} disabled={preButton}>
-      { "<<"} 
+      <button onClick={prevSlide} disabled={preButton || !infinite}>
+        {"<<"}
       </button>
       {/* render images */}
       {imageSourcesToDisplay?.map(
         (image, index) => {
-          return (<span>
-             <div className={styles.centered}>{image.title}</div>
-             <div className={styles.centered2}>{image.subTitle}</div>
-            <img src={image?.image} alt="image" /></span>);
+          return (
+            <span>
+              <div className={styles.centered}>{image.title}</div>
+              <div className={styles.centered2}>{image.subTitle}</div>
+              <img src={image?.image} alt="image" />
+            </span>
+          );
         }
 
         // <img key={index} src={image} alt="" style={{ maxWidth: '15%', display: 'inlie-block' }} />
       )}
-      <button onClick={nextSlide} disabled={nextButton}>{">>"}</button>
+      <button onClick={nextSlide} disabled={nextButton || !infinite}>
+        {">>"}
+      </button>
     </div>
   );
 };
