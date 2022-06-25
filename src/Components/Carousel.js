@@ -1,20 +1,19 @@
-import React, { useState } from "react";
-import styles from "./Carousel.module.css";
+import React, { useState, useEffect } from "react";
 
-const HookedCarousel = () => {
+const Carousel = ({ slides, infinite }) => {
   const [images, setImages] = useState([
     {
-      image: "https://picsum.photos/200/300",
+      image: "https://picsum.photos/600/400",
       title: "Strong mask",
       subTitle: "Secondary text",
     },
     {
-      image: "https://picsum.photos/id/237/200/300",
+      image: "https://picsum.photos/id/237/600/400",
       title: "Strong mask",
       subTitle: "Secondary text",
     },
     {
-      image: "https://picsum.photos/id/237/200/300",
+      image: "https://picsum.photos/600/400",
       title: "Strong mask",
       subTitle: "Secondary text",
     },
@@ -22,13 +21,15 @@ const HookedCarousel = () => {
 
   const [currentImageIdx, setCurrentImagIdx] = useState(0);
 
-  const getReviews = () => {
-    const data = fetch(
-      `https://mybusiness.googleapis.com/v4/accounts/6874287982/locations/ChIJNVyMGnhT4joRMj4VSn0hLak/reviews`
-    )
+  const getSlides = () => {
+    const data = fetch(`http://localhost:3600/api/carousel/?slides=${2}`)
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => setImages(data));
   };
+
+  useEffect(() => {
+    getSlides();
+  }, [slides, infinite]);
 
   const prevSlide = () => {
     // find out whether currentImageIdx eqals 0 and thus user reached beginning of carousel
@@ -53,23 +54,24 @@ const HookedCarousel = () => {
   // create a new array with 5 elements from the source images
   const activeImageSourcesFromState = images.slice(
     currentImageIdx,
-    currentImageIdx +1
+    currentImageIdx + 1
   );
 
   // check the length of the new array (it’s less than 5 when index is at the end of the imagge sources array)
   const imageSourcesToDisplay =
     activeImageSourcesFromState.length < 3
       ? // if the imageSourcesToDisplay's length is lower than 5 images than append missing images from the beginning of the original array
-       activeImageSourcesFromState
+        activeImageSourcesFromState
       : activeImageSourcesFromState;
 
   return (
-    <div style={{marginTop:"1rem"}}>
-      <button onClick={prevSlide}>Prev</button>
+    <div style={{ marginTop: "1rem" }}>
+      <button onClick={prevSlide}>
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      </button>
       {/* render images */}
       {imageSourcesToDisplay?.map(
         (image, index) => {
-          console.log(image);
           return <img src={image?.image} alt="image" />;
         }
 
@@ -80,4 +82,4 @@ const HookedCarousel = () => {
   );
 };
 
-export default HookedCarousel;
+export default Carousel;
