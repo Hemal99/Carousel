@@ -87,7 +87,7 @@ const Carousel = ({ slides, infinite }) => {
       {imageSourcesToDisplay?.map(
         (image, index) => {
           return (
-            <span>
+            <span key={index}>
               <Title title={image.title} />
               <SubTitle title={image.subTitle} />
               <img src={image?.image} alt="image" />
