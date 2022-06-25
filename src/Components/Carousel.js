@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Carousel.module.css";
+import Title from "./Title";
+import SubTitle from "./SubTitle";
 
 const Carousel = ({ slides, infinite }) => {
   const [images, setImages] = useState([]);
@@ -28,13 +30,13 @@ const Carousel = ({ slides, infinite }) => {
 
     // assign the logical index to current image index that will be used in render method
     setCurrentImagIdx(index);
-    if (index === 0) {
+    if (index === 0 && infinite) {
       setPrevButton(true);
     } else {
       setPrevButton(false);
     }
 
-    if (index === images.length - 1) {
+    if (index === images.length - 1 && infinite) {
       setNextButton(true);
     } else {
       setNextButton(false);
@@ -86,8 +88,8 @@ const Carousel = ({ slides, infinite }) => {
         (image, index) => {
           return (
             <span>
-              <div className={styles.centered}>{image.title}</div>
-              <div className={styles.centered2}>{image.subTitle}</div>
+              <Title title={image.title} />
+              <SubTitle title={image.subTitle} />
               <img src={image?.image} alt="image" />
             </span>
           );
