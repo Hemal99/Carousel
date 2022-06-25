@@ -10,12 +10,12 @@ export default function Main() {
 
   const handleInfinite = (e) => {
     console.log(e.target.value);
-    if(e.target.value==="yes"){
-        setIsFinite(true);
-    }else{
-        setIsFinite(false);
+    if (e.target.value === "yes") {
+      setIsFinite(true);
+    } else {
+      setIsFinite(false);
     }
-  }
+  };
 
   const handleSubmit = (e) => {
     console.log("e", e);
@@ -27,6 +27,7 @@ export default function Main() {
 
   return (
     <div style={{ marginTop: "1rem" }}>
+      <h5>No of slides : {slides}</h5>
       <form>
         <div>
           <label style={{ marginRight: "1rem" }}>Number of slides</label>
@@ -66,7 +67,7 @@ export default function Main() {
           <button onClick={handleSubmit}>Submit</button>
         </div>
       </form>
-      <Carousel slides={slides} isFinite={isFinite}/>
+      <Carousel slides={slides} isFinite={isFinite} />
     </div>
   );
 }

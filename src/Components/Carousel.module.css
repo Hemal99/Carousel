@@ -10,6 +10,13 @@ img {vertical-align: middle;}
   margin: auto;
 }
 
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* Next & previous buttons */
 .prev, .next {
   cursor: pointer;

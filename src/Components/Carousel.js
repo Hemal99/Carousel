@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styles from "./Carousel.module.css";
 
 const Carousel = ({ slides, infinite }) => {
   const [images, setImages] = useState([]);
@@ -56,7 +57,9 @@ const Carousel = ({ slides, infinite }) => {
       {/* render images */}
       {imageSourcesToDisplay?.map(
         (image, index) => {
-          return <img src={image?.image} alt="image" />;
+          return (<span>
+             <div className={styles.centered}>{image.title}</div>
+            <img src={image?.image} alt="image" /></span>);
         }
 
         // <img key={index} src={image} alt="" style={{ maxWidth: '15%', display: 'inlie-block' }} />
