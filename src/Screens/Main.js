@@ -5,7 +5,6 @@ import { Button } from "@mui/material";
 import AddModel from "../Components/AddSlides/AddModel";
 
 export default function Main() {
-
   const inputRef = useRef();
   const infinite = useRef();
   const [err, setErr] = useState("");
