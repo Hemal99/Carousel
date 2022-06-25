@@ -9,7 +9,6 @@ export default function Main() {
   const [isFinite, setIsFinite] = useState(false);
 
   const handleInfinite = (e) => {
-    console.log(e.target.value);
     if (e.target.value === "yes") {
       setIsFinite(true);
     } else {
@@ -18,10 +17,8 @@ export default function Main() {
   };
 
   const handleSubmit = (e) => {
-    console.log("e", e);
     e.preventDefault();
-    console.log(inputRef.current.value);
-    console.log(infinite.current.value);
+   
     setSlides(inputRef.current.value);
   };
 

@@ -15,7 +15,6 @@ const Carousel = ({ slides, infinite }) => {
 
   useEffect(() => {
     getSlides();
-    console.log("images",images)
   }, [slides, infinite]);
 
   const prevSlide = () => {
