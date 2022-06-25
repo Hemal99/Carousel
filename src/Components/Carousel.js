@@ -11,9 +11,11 @@ const Carousel = ({ slides, infinite }) => {
       .then((response) => response.json())
       .then((data) => setImages(data));
   };
+  
 
   useEffect(() => {
     getSlides();
+    console.log("images",images)
   }, [slides, infinite]);
 
   const prevSlide = () => {
