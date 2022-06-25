@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import styles from "./Carousel.module.css";
 import Title from "./Title";
 import SubTitle from "./SubTitle";
 
@@ -11,7 +10,7 @@ const Carousel = ({ slides, infinite }) => {
   const [preButton, setPrevButton] = useState(false);
 
   const getSlides = () => {
-    const data = fetch(`http://localhost:3600/api/carousel/?slides=${slides}`)
+    fetch(`http://localhost:3600/api/carousel/?slides=${slides}`)
       .then((response) => response.json())
       .then((data) => setImages(data));
   };
@@ -20,6 +19,7 @@ const Carousel = ({ slides, infinite }) => {
     getSlides();
     setNextButton(false);
     setPrevButton(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slides, infinite]);
 
   const prevSlide = () => {
@@ -84,19 +84,15 @@ const Carousel = ({ slides, infinite }) => {
         {"<<"}
       </button>
       {/* render images */}
-      {imageSourcesToDisplay?.map(
-        (image, index) => {
-          return (
-            <span key={index}>
-              <Title title={image.title} />
-              <SubTitle title={image.subTitle} />
-              <img src={image?.image} alt="image" />
-            </span>
-          );
-        }
-
-        // <img key={index} src={image} alt="" style={{ maxWidth: '15%', display: 'inlie-block' }} />
-      )}
+      {imageSourcesToDisplay?.map((image, index) => {
+        return (
+          <span key={index}>
+            <Title title={image.title} />
+            <SubTitle title={image.subTitle} />
+            <img src={image?.image} alt={image.title} />
+          </span>
+        );
+      })}
       <button onClick={nextSlide} disabled={nextButton || !infinite}>
         {">>"}
       </button>

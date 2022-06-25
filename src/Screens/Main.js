@@ -1,9 +1,15 @@
 import React, { useRef, useState } from "react";
 import Carousel from "../Components/Carousel";
+import { useNavigate } from 'react-router-dom';
+
+import {
+    Button
+} from '@mui/material'
 
 export default function Main() {
   const inputRef = useRef();
   const infinite = useRef();
+  let navigate = useNavigate();
 
   const [slides, setSlides] = useState(2);
   const [isFinite, setIsFinite] = useState(true);
@@ -24,6 +30,9 @@ export default function Main() {
 
   return (
     <div style={{ marginTop: "1rem" }}>
+        <div>
+            <Button onClick={() => navigate('/add-slides')}>Add Slides</Button>
+        </div>
       <h5>No of slides : {slides}</h5>
       <form>
         <div>
