@@ -6,7 +6,7 @@ const Carousel = ({ slides, infinite }) => {
   const [currentImageIdx, setCurrentImagIdx] = useState(0);
 
   const getSlides = () => {
-    const data = fetch(`http://localhost:3600/api/carousel/?slides=${2}`)
+    const data = fetch(`http://localhost:3600/api/carousel/?slides=${slides}`)
       .then((response) => response.json())
       .then((data) => setImages(data));
   };
