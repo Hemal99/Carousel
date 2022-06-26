@@ -42,7 +42,7 @@ export default function ViewImages({ open, setOpen }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Add New Slide"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{"View Slides"}</DialogTitle>
         <DialogContent>
           <Grid container spacing={3}>
             {slideData?.length > 0 &&
