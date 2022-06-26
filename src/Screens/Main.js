@@ -45,9 +45,9 @@ export default function Main() {
       <div>
         <Button onClick={handleClickOpen}>Add Slides</Button>
       </div>
-      {/* <div>
+      <div>
         <Button onClick={handleClickOpenView}>View Slides</Button>
-      </div> */}
+      </div>
       <h5>No of slides : {slides}</h5>
       <form>
         <div>
